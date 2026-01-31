@@ -1,17 +1,12 @@
+bool isPalindrome(int x) {
+    if (x < 0 || (x % 10 == 0 && x != 0)) return false;
 
-int cmp(const void* a, const void* b) {
-    return (*(int*)a - *(int*)b);
-}
-
-bool canMakeArithmeticProgression(int* arr, int arrSize) {
-    qsort(arr, arrSize, sizeof(int), cmp);
-
-    int d = arr[1] - arr[0];
-    for (int i = 2; i < arrSize; i++) {
-        if (arr[i] - arr[i - 1] != d) {
-            return false;
-        }
+    int rev = 0;
+    while (x > rev) {
+        rev = rev * 10 + x % 10;
+        x /= 10;
     }
-    return true;
+
+    return x == rev || x == rev / 10;
 }
 
